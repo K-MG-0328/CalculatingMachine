@@ -44,7 +44,7 @@ readNumber(), readOperator() 등을 통해 입력값 처리
 프로그램이 종료됩니다.
 
 ### 추가 및 변경사항
-BigDecimal 사용
+#### BigDecimal 사용
 String.valueOf(operand)를 통해 BigDecimal 객체를 만들기 때문에 부동소수점 오차가 없도록 수정했습니다.
-0으로 나누기
+#### 0으로 나누기
 ArithmeticException이 발생 시, 안내 문구 출력 후 계산 상태를 초기 상태로 돌리도록 변경했습니다.
