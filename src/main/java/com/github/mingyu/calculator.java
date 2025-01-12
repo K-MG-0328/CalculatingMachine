@@ -39,7 +39,7 @@ public class calculator {
         sc = new Scanner(System.in);
 
         //연산자 모음
-        validOperators = new HashSet<String>(Arrays.asList("+","-","*","/"));
+        validOperators = new HashSet<>(Arrays.asList("+","-","*","/"));
     }
 
     public void start(){
