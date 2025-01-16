@@ -151,12 +151,9 @@ public class CalculatorV2 {
                 case "*" -> result = op1.multiply(op2);
                 case "/" -> {
                     try { //0으로 나눴을 때에 예외 체크
-                        if(op2.equals(BigDecimal.ZERO)){
-                            throw new ArithmeticException("0으로 나눌 수 없습니다.");
-                        }
                         result = op1.divide(op2);
                     }catch (ArithmeticException e){
-                        System.out.println(e.getMessage());
+                        System.out.println("0으로 나눌 수가 없습니다.");
                         return new UserInputV2(State.STATE_INITIAL);
                     }
                 }
