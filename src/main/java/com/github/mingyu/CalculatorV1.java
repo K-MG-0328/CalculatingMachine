@@ -6,7 +6,8 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
-public class calculator {
+
+public class CalculatorV1 {
 
     //초기상태(첫번째 입력값을 받을 차례)
     public static final int STATE_INITIAL = 0;
@@ -35,7 +36,7 @@ public class calculator {
     public Set<String> validOperators;
     private Scanner sc;
 
-    public calculator(){
+    public CalculatorV1(){
         sc = new Scanner(System.in);
 
         //연산자 모음
@@ -176,16 +177,16 @@ public class calculator {
     }
 
     public static void main(String[] args) {
-        new calculator().start();
+        new CalculatorV1().start();
     }
 }
 
 //사용자 입력 정보 저장을 위한 클래스
 class UserInput{
-    public static final UserInput QUIT = new UserInput(calculator.STATE_QUIT); //프로그램 종료상태
-    public static final UserInput CLEAR = new UserInput(calculator.STATE_CLEAR); //초기화 상태
-    public static final UserInput READ_NUMBER_ERROR = new UserInput(calculator.STATE_READ_NUMBER_ERROR);
-    public static final UserInput READ_OPERATOR_ERROR = new UserInput(calculator.STATE_READ_OPERATOR_ERROR);
+    public static final UserInput QUIT = new UserInput(CalculatorV1.STATE_QUIT); //프로그램 종료상태
+    public static final UserInput CLEAR = new UserInput(CalculatorV1.STATE_CLEAR); //초기화 상태
+    public static final UserInput READ_NUMBER_ERROR = new UserInput(CalculatorV1.STATE_READ_NUMBER_ERROR);
+    public static final UserInput READ_OPERATOR_ERROR = new UserInput(CalculatorV1.STATE_READ_OPERATOR_ERROR);
 
     //다음 상태를 저장함.
     public final int nextState;
