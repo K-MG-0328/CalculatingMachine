@@ -24,7 +24,7 @@ public class CalculatorV2 {
         double operand1 = 0, operand2 = 0;
         String operator = null;
         State state = State.STATE_INITIAL;
-        UserInputV2 result = null;
+        Output output = null;
         UserInputV2 input = null;
 
         //프로그램 종료시(Q입력 시) false로 바뀌고 루프를 종료
@@ -45,10 +45,10 @@ public class CalculatorV2 {
                     break;
                 // 결과를 출력하는 상태의 처리
                 case STATE_PRINT_RESULT:
-                    result = calculateOperand(operand1, operand2, operator); // 변경 부분
-                    if(result.nextState != State.STATE_INITIAL) System.out.printf("결과: %s %s %s = %s\n", operand1, operator, operand2, result.number);
-                    operand1 = result.number;
-                    state = result.nextState;
+                    output = calculateOperand(operand1, operand2, operator);
+                    if(output.nextState != State.STATE_INITIAL) System.out.printf("결과: %s %s %s = %s\n", operand1, operator, operand2, output.result);
+                    operand1 = output.result;
+                    state = output.nextState;
                     operator = null;
                     break;
                 // 잘못된 숫자를 입력한 경우
@@ -139,7 +139,7 @@ public class CalculatorV2 {
         }
     }
 
-    private UserInputV2 calculateOperand(double operand1, double operand2, String operator) {
+    private Output calculateOperand(double operand1, double operand2, String operator) {
 
         BigDecimal op1 = new BigDecimal(String.valueOf(operand1));
         BigDecimal op2 = new BigDecimal(String.valueOf(operand2));
@@ -154,13 +154,11 @@ public class CalculatorV2 {
                         result = op1.divide(op2);
                     }catch (ArithmeticException e){
                         System.out.println("0으로 나눌 수가 없습니다.");
-                        return new UserInputV2(State.STATE_INITIAL);
+                        return new Output(State.STATE_INITIAL);
                     }
                 }
             }
-
-
-        return new UserInputV2(State.STATE_READ_OPERATOR, result.doubleValue());
+        return new Output(State.STATE_READ_OPERATOR, result.doubleValue());
     }
 
     public static void main(String[] args) {
